@@ -1,0 +1,62 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        applicationId "kz.kamadi.androidtest"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation Android.ktx
+    implementation Android.appCompat
+    implementation Android.material
+    implementation Android.swipeRefreshLayout
+
+//    Network
+    implementation Network.retrofit
+    implementation Network.retrofitCoroutines
+    implementation Network.retrofitGson
+    implementation Network.okHttp
+    implementation Network.okHttpTls
+    implementation Network.okHttpLogging
+    implementation Network.gson
+
+//    Dagger
+    implementation Dagger.dagger
+    implementation Dagger.android
+    implementation Dagger.androidSupport
+    kapt Dagger.compiler
+    kapt Dagger.androidProcessor
+
+    implementation Kotlin.coroutinesCore
+    implementation Kotlin.coroutinesAndroid
+
+    implementation UI.picasso
+
+    implementation ArchitectureComponents.lifecycleExtensions
+    implementation ArchitectureComponents.lifecycleCompiler
+}
